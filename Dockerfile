@@ -1,7 +1,7 @@
-FROM node:lts
+FROM node:lts-alpine
 ENV NODE_ENV=production
 
-RUN apt-get update && apt-get install -y ffmpeg
+RUN apk --no-cache add ffmpeg
 
 RUN npm install -g pnpm
 

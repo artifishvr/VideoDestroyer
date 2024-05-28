@@ -11,7 +11,7 @@ const upload = multer({ dest: 'temp/' });
 router.post('/', upload.single('uploaded_file'), async function (req, res, next) {
   if (!req.file) return res.status(400).send('No file uploaded.');
 
-  if (req.file.size > 8000000) return res.status(400).send('File too large. Max 8MB.');
+  if (req.file.size > 100000000) return res.status(400).send('File too large. Max 100MB.');
 
   const uploadid = crypto.randomUUID();
 
