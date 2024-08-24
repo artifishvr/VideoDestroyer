@@ -199,10 +199,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ffmpeg/util@npm:^0.12.1":
+"@ffmpeg/util@npm:0.12.1":
   version: 0.12.1
   resolution: "@ffmpeg/util@npm:0.12.1"
   checksum: 10c0/943cc8b886cdfd3c448d3618acc3fe02abda46472c11aefb9e90a4a814962142632e90ab475374357fddb6ba8176757dbbe434147e0cd1a8fcd5133f95bee0a6
+  languageName: node
+  linkType: hard
+
+"@ffmpeg/util@patch:@ffmpeg/util@npm%3A0.12.1#~/.yarn/patches/@ffmpeg-util-npm-0.12.1-f6f14a29c4.patch":
+  version: 0.12.1
+  resolution: "@ffmpeg/util@patch:@ffmpeg/util@npm%3A0.12.1#~/.yarn/patches/@ffmpeg-util-npm-0.12.1-f6f14a29c4.patch::version=0.12.1&hash=d8bbe7"
+  checksum: 10c0/4dde394a7041aa276680782be032306062153f5862497fe0aacc73a1a3c0b873ce5b775f011f4e6903ed2a11d8a88357c1ce2f183e5a96bed03de3aad81ae9eb
   languageName: node
   linkType: hard
 
@@ -2867,7 +2874,7 @@ __metadata:
   resolution: "videodestroyer@workspace:."
   dependencies:
     "@ffmpeg/ffmpeg": "npm:^0.12.10"
-    "@ffmpeg/util": "npm:^0.12.1"
+    "@ffmpeg/util": "patch:@ffmpeg/util@npm%3A0.12.1#~/.yarn/patches/@ffmpeg-util-npm-0.12.1-f6f14a29c4.patch"
     "@sveltejs/adapter-auto": "npm:^3.0.0"
     "@sveltejs/kit": "npm:^2.0.0"
     "@sveltejs/vite-plugin-svelte": "npm:^3.0.0"

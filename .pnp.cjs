@@ -28,7 +28,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["@ffmpeg/ffmpeg", "npm:0.12.10"],\
-          ["@ffmpeg/util", "npm:0.12.1"],\
+          ["@ffmpeg/util", "patch:@ffmpeg/util@npm%3A0.12.1#~/.yarn/patches/@ffmpeg-util-npm-0.12.1-f6f14a29c4.patch::version=0.12.1&hash=d8bbe7"],\
           ["@sveltejs/adapter-auto", "virtual:af3ac605c9e747a85d815d4ed61898a6bd5c3ac4fd10f4a81174068ebb2313ea63c7bc9b096154e00f5a2645438cf866dc7c3802a4c1f2b0195e17a9f14f9978#npm:3.2.4"],\
           ["@sveltejs/kit", "virtual:af3ac605c9e747a85d815d4ed61898a6bd5c3ac4fd10f4a81174068ebb2313ea63c7bc9b096154e00f5a2645438cf866dc7c3802a4c1f2b0195e17a9f14f9978#npm:2.5.24"],\
           ["@sveltejs/vite-plugin-svelte", "virtual:af3ac605c9e747a85d815d4ed61898a6bd5c3ac4fd10f4a81174068ebb2313ea63c7bc9b096154e00f5a2645438cf866dc7c3802a4c1f2b0195e17a9f14f9978#npm:3.1.2"],\
@@ -292,10 +292,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@ffmpeg/util", [\
-      ["npm:0.12.1", {\
-        "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/@ffmpeg-util-npm-0.12.1-f6f14a29c4-10c0.zip/node_modules/@ffmpeg/util/",\
+      ["patch:@ffmpeg/util@npm%3A0.12.1#~/.yarn/patches/@ffmpeg-util-npm-0.12.1-f6f14a29c4.patch::version=0.12.1&hash=d8bbe7", {\
+        "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/@ffmpeg-util-patch-ccdf877380-10c0.zip/node_modules/@ffmpeg/util/",\
         "packageDependencies": [\
-          ["@ffmpeg/util", "npm:0.12.1"]\
+          ["@ffmpeg/util", "patch:@ffmpeg/util@npm%3A0.12.1#~/.yarn/patches/@ffmpeg-util-npm-0.12.1-f6f14a29c4.patch::version=0.12.1&hash=d8bbe7"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3383,7 +3383,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["videodestroyer", "workspace:."],\
           ["@ffmpeg/ffmpeg", "npm:0.12.10"],\
-          ["@ffmpeg/util", "npm:0.12.1"],\
+          ["@ffmpeg/util", "patch:@ffmpeg/util@npm%3A0.12.1#~/.yarn/patches/@ffmpeg-util-npm-0.12.1-f6f14a29c4.patch::version=0.12.1&hash=d8bbe7"],\
           ["@sveltejs/adapter-auto", "virtual:af3ac605c9e747a85d815d4ed61898a6bd5c3ac4fd10f4a81174068ebb2313ea63c7bc9b096154e00f5a2645438cf866dc7c3802a4c1f2b0195e17a9f14f9978#npm:3.2.4"],\
           ["@sveltejs/kit", "virtual:af3ac605c9e747a85d815d4ed61898a6bd5c3ac4fd10f4a81174068ebb2313ea63c7bc9b096154e00f5a2645438cf866dc7c3802a4c1f2b0195e17a9f14f9978#npm:2.5.24"],\
           ["@sveltejs/vite-plugin-svelte", "virtual:af3ac605c9e747a85d815d4ed61898a6bd5c3ac4fd10f4a81174068ebb2313ea63c7bc9b096154e00f5a2645438cf866dc7c3802a4c1f2b0195e17a9f14f9978#npm:3.1.2"],\
