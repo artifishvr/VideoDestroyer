@@ -25,15 +25,8 @@
   "type": "module",
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.12.10",
-    "@ffmpeg/util": "^0.12.1",
+    "@ffmpeg/util": "patch:@ffmpeg/util@npm%3A0.12.1#~/.yarn/patches/@ffmpeg-util-npm-0.12.1-f6f14a29c4.patch",
     "lucide-svelte": "^0.435.0"
   },
-  "trustedDependencies": [
-    "@sveltejs/kit",
-    "esbuild",
-    "svelte-preprocess"
-  ],
-  "patchedDependencies": {
-    "@ffmpeg/util@0.12.1": "patches/@ffmpeg%2Futil@0.12.1.patch"
-  }
+  "packageManager": "yarn@4.4.1"
 }
