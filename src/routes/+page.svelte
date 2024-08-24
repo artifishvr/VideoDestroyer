@@ -6,7 +6,7 @@
 
   let fileInput: HTMLInputElement;
 
-  const baseURL = "https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/esm";
+  const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm";
 
   let status = "Ready"; // "Loading" | "Destroying" | "Transcoding" | "Complete";
   let globalProgress = 0;
@@ -24,10 +24,6 @@
       wasmURL: await toBlobURL(
         `${baseURL}/ffmpeg-core.wasm`,
         "application/wasm"
-      ),
-      workerURL: await toBlobURL(
-        `${baseURL}/ffmpeg-core.worker.js`,
-        "text/javascript"
       ),
     });
 
