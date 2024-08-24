@@ -59,6 +59,8 @@
     await ffmpeg.exec([
       "-i",
       "step1.mp4",
+      "-preset",
+      "veryfast",
       "-b:v",
       "1k",
       "-r",
@@ -76,6 +78,10 @@
     );
   }
 </script>
+
+<svelte:head>
+  <title>Video Destroyer</title>
+</svelte:head>
 
 <div class="flex flex-col items-center justify-center h-screen">
   <input
