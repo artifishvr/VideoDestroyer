@@ -24,13 +24,13 @@ importers:
         version: 0.435.0(svelte@4.2.19)
     devDependencies:
       '@sveltejs/adapter-auto':
-        specifier: ^3.0.0
+        specifier: ^3.2.4
         version: 3.2.4(@sveltejs/kit@2.5.24(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.2))(svelte@4.2.19)(vite@5.4.2))
       '@sveltejs/kit':
-        specifier: ^2.0.0
+        specifier: ^2.5.24
         version: 2.5.24(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.2))(svelte@4.2.19)(vite@5.4.2)
       '@sveltejs/vite-plugin-svelte':
-        specifier: ^3.0.0
+        specifier: ^3.1.2
         version: 3.1.2(svelte@4.2.19)(vite@5.4.2)
       autoprefixer:
         specifier: ^10.4.20
@@ -42,19 +42,19 @@ importers:
         specifier: ^0.46.15
         version: 0.46.15(rollup@4.21.0)(svelte@4.2.19)
       svelte:
-        specifier: ^4.2.7
+        specifier: ^4.2.19
         version: 4.2.19
       svelte-check:
-        specifier: ^3.6.0
+        specifier: ^3.8.6
         version: 3.8.6(postcss-load-config@4.0.2(postcss@8.4.41))(postcss@8.4.41)(svelte@4.2.19)
       tailwindcss:
-        specifier: ^3.4.9
+        specifier: ^3.4.10
         version: 3.4.10
       typescript:
-        specifier: ^5.0.0
+        specifier: ^5.5.4
         version: 5.5.4
       vite:
-        specifier: ^5.0.3
+        specifier: ^5.4.2
         version: 5.4.2
 
 packages:
