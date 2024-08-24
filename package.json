@@ -25,7 +25,6 @@
 	"type": "module",
 	"dependencies": {
 		"@ffmpeg/ffmpeg": "^0.12.10",
-		"@ffmpeg/util": "^0.12.1",
 		"lucide-svelte": "^0.435.0"
 	}
 }

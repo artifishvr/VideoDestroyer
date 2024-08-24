@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@ffmpeg/util':
-    hash: hrvgfg2gtmwnsrbzjy3vbhlsfu
-    path: patches/@ffmpeg__util.patch
-
 importers:
 
   .:
@@ -16,9 +11,6 @@ importers:
       '@ffmpeg/ffmpeg':
         specifier: ^0.12.10
         version: 0.12.10
-      '@ffmpeg/util':
-        specifier: ^0.12.1
-        version: 0.12.1(patch_hash=hrvgfg2gtmwnsrbzjy3vbhlsfu)
       lucide-svelte:
         specifier: ^0.435.0
         version: 0.435.0(svelte@4.2.19)
@@ -212,10 +204,6 @@ packages:
   '@ffmpeg/types@0.12.2':
     resolution: {integrity: sha512-NJtxwPoLb60/z1Klv0ueshguWQ/7mNm106qdHkB4HL49LXszjhjCCiL+ldHJGQ9ai2Igx0s4F24ghigy//ERdA==}
     engines: {node: '>=16.x'}
-
-  '@ffmpeg/util@0.12.1':
-    resolution: {integrity: sha512-10jjfAKWaDyb8+nAkijcsi9wgz/y26LOc1NKJradNMyCIl6usQcBbhkjX5qhALrSBcOy6TOeksunTYa+a03qNQ==}
-    engines: {node: '>=18.x'}
 
   '@floating-ui/core@1.6.7':
     resolution: {integrity: sha512-yDzVT/Lm101nQ5TCVeK65LtdN7Tj4Qpr9RTXJ2vPFLqtLxwOrpoxAHAJI8J3yYWUc40J0BDBheaitK5SJmno2g==}
@@ -1270,8 +1258,6 @@ snapshots:
       '@ffmpeg/types': 0.12.2
 
   '@ffmpeg/types@0.12.2': {}
-
-  '@ffmpeg/util@0.12.1(patch_hash=hrvgfg2gtmwnsrbzjy3vbhlsfu)': {}
 
   '@floating-ui/core@1.6.7':
     dependencies:
