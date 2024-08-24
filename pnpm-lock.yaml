@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   '@ffmpeg/util':
-    hash: hrvgfg2gtmwnsrbzjy3vbhlsfu
+    hash: jmvtu6rmnhxvos2ceaap65unle
     path: patches/@ffmpeg__util.patch
 
 importers:
@@ -18,7 +18,7 @@ importers:
         version: 0.12.10
       '@ffmpeg/util':
         specifier: ^0.12.1
-        version: 0.12.1(patch_hash=hrvgfg2gtmwnsrbzjy3vbhlsfu)
+        version: 0.12.1(patch_hash=jmvtu6rmnhxvos2ceaap65unle)
       lucide-svelte:
         specifier: ^0.435.0
         version: 0.435.0(svelte@4.2.19)
@@ -1271,7 +1271,7 @@ snapshots:
 
   '@ffmpeg/types@0.12.2': {}
 
-  '@ffmpeg/util@0.12.1(patch_hash=hrvgfg2gtmwnsrbzjy3vbhlsfu)': {}
+  '@ffmpeg/util@0.12.1(patch_hash=jmvtu6rmnhxvos2ceaap65unle)': {}
 
   '@floating-ui/core@1.6.7':
     dependencies:

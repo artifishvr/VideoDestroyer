@@ -1,12 +1,12 @@
 diff --git a/package.json b/package.json
-index 3afedb4c0fd279eef1c4330bff7b9325c7dc94c1..7e4b479b100ecbb42bab5eedb571329669a1debc 100644
+index 3afedb4c0fd279eef1c4330bff7b9325c7dc94c1..50f2e6e22fc857a372f60e95d198882139ce87e6 100644
 --- a/package.json
 +++ b/package.json
-@@ -52,5 +52,6 @@
-     "rimraf": "^5.0.1",
-     "typescript": "^5.1.6",
-     "webpack-cli": "^5.1.4"
--  }
-+  },
-+  "type": "module"
- }
+@@ -4,6 +4,7 @@
+   "description": "browser utils for @ffmpeg/*",
+   "main": "./dist/cjs/index.js",
+   "types": "./dist/cjs/index.d.ts",
++  "type": "module",
+   "exports": {
+     ".": {
+       "types": "./dist/cjs/index.d.ts",
