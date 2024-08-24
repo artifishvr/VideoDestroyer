@@ -1,32 +1,36 @@
 {
-  "name": "videodestroyer",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
-  },
-  "devDependencies": {
-    "@sveltejs/adapter-auto": "^3.0.0",
-    "@sveltejs/kit": "^2.0.0",
-    "@sveltejs/vite-plugin-svelte": "^3.0.0",
-    "autoprefixer": "^10.4.20",
-    "flowbite": "^2.5.1",
-    "flowbite-svelte": "^0.46.15",
-    "svelte": "^4.2.7",
-    "svelte-check": "^3.6.0",
-    "tailwindcss": "^3.4.9",
-    "typescript": "^5.0.0",
-    "vite": "^5.0.3"
-  },
-  "type": "module",
-  "dependencies": {
-    "@ffmpeg/ffmpeg": "^0.12.10",
-    "@ffmpeg/util": "patch:@ffmpeg/util@npm%3A0.12.1#~/.yarn/patches/@ffmpeg-util-npm-0.12.1-f6f14a29c4.patch",
-    "lucide-svelte": "^0.435.0"
-  },
-  "packageManager": "yarn@4.4.1"
+	"name": "videodestroyer",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"autoprefixer": "^10.4.20",
+		"flowbite": "^2.5.1",
+		"flowbite-svelte": "^0.46.15",
+		"svelte": "^4.2.7",
+		"svelte-check": "^3.6.0",
+		"tailwindcss": "^3.4.9",
+		"typescript": "^5.0.0",
+		"vite": "^5.0.3"
+	},
+	"type": "module",
+	"dependencies": {
+		"@ffmpeg/ffmpeg": "^0.12.10",
+		"@ffmpeg/util": "^0.12.1",
+		"lucide-svelte": "^0.435.0"
+	},
+	"pnpm": {
+		"patchedDependencies": {
+			"@ffmpeg/util": "patches/@ffmpeg__util.patch"
+		}
+	}
 }
