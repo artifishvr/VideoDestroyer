@@ -1,6 +1,6 @@
 <script lang="ts">
   import { FFmpeg } from "@ffmpeg/ffmpeg";
-  import { fetchFile, toBlobURL } from "@ffmpeg/util";
+  import { fetchFile, toBlobURL } from "$lib/ffmpegUtils";
 
   let downloadURL: string;
 
@@ -13,7 +13,7 @@
 
   async function transcode() {
     const ffmpeg = new FFmpeg();
-    ffmpeg.on("progress", ({ progress }) => {
+    ffmpeg.on("progress", ({ progress }: { progress: number }) => {
       globalProgress = progress * 100;
       globalProgress = Math.round(globalProgress);
     });
