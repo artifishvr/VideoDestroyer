@@ -10,7 +10,14 @@
 
   const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm";
 
-  let status = "Ready"; // "Loading" | "Destroying" | "Transcoding" | "Complete";
+  type StatusType =
+    | "Ready"
+    | "Loading"
+    | "Destroying"
+    | "Transcoding"
+    | "Complete";
+
+  let status: StatusType = "Ready";
   let globalProgress: number = 0;
 
   async function transcode() {
@@ -108,6 +115,7 @@
   <p class="absolute bottom-0 mb-8 text-gray-300">
     with ❤️ by <a
       href="https://arti.gay?ref=videodestroyer"
+      target="_blank"
       class="underline text-blue-300">arti</a>
   </p>
 </div>
