@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Status from "$lib/components/Status.svelte";
+  import Button from "$lib/components/ui/button/button.svelte";
   import { FFmpeg } from "@ffmpeg/ffmpeg";
   import { fetchFile, toBlobURL } from "$lib/ffmpegUtils";
 
@@ -9,13 +11,12 @@
   const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm";
 
   let status = "Ready"; // "Loading" | "Destroying" | "Transcoding" | "Complete";
-  let globalProgress = 0;
+  let globalProgress: number = 0;
 
   async function transcode() {
     const ffmpeg = new FFmpeg();
     ffmpeg.on("progress", ({ progress }: { progress: number }) => {
       globalProgress = progress * 100;
-      globalProgress = Math.round(globalProgress);
     });
 
     status = "Loading";
@@ -84,95 +85,29 @@
 </svelte:head>
 
 <div class="flex flex-col items-center justify-center h-screen">
+  <h1 class="text-5xl font-bold pb-2 {status === 'Ready' ? '' : 'hidden'}">
+    Video Destroyer
+  </h1>
+  <h2 class="text-md font-semibold pb-4 {status === 'Ready' ? '' : 'hidden'}">
+    Supports MP4 files. Runs in the browser via ffmpeg.wasm.
+  </h2>
+
   <input
+    class="{status === 'Ready' ? '' : 'hidden'} text-center"
     type="file"
     bind:this={fileInput}
-    accept=".mp4"
-    class={status === "Ready" ? "" : "hidden"} />
-  {#if status === "Ready"}
-    <button
-      on:click={transcode}
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3">
-      Destroy
-    </button>
-  {:else if status === "Loading"}
-    <div class="animate-spin">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-loader-circle"
-        ><path d="M21 12a9 9 0 1 1-6.219-8.56" /></svg>
-    </div>
+    accept=".mp4" />
 
-    <p class="font-semibold text-md">Loading FFmpeg...</p>
-  {:else if status === "Destroying"}
-    <div class="animate-bounce">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-trash-2"
-        ><path d="M3 6h18" /><path
-          d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path
-          d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" /><line
-          x1="10"
-          x2="10"
-          y1="11"
-          y2="17" /><line x1="14" x2="14" y1="11" y2="17" /></svg>
-    </div>
-    <p class="font-semibold text-md">Destroying...</p>
-  {:else if status === "Transcoding"}
-    <div class="animate-bounce">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-clapperboard"
-        ><path
-          d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z" /><path
-          d="m6.2 5.3 3.1 3.9" /><path d="m12.4 3.4 3.1 4" /><path
-          d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" /></svg>
-    </div>
-    <p class="font-semibold text-md">Transcoding...</p>
-  {:else if status === "Complete"}
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="lucide lucide-circle-check"
-      ><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>
+  <Button
+    on:click={transcode}
+    class="mt-3 {status === 'Ready' ? '' : 'hidden'}">
+    Destroy
+  </Button>
+  <Status bind:status bind:downloadURL {globalProgress} />
 
-    <p class="font-semibold text-md">Complete!</p>
-
-    <a href={downloadURL} download>
-      <button
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3"
-        >Download</button>
-    </a>
-  {/if}
+  <p class="absolute bottom-0 mb-8 text-gray-300">
+    with ❤️ by <a
+      href="https://arti.gay?ref=videodestroyer"
+      class="underline text-blue-300">arti</a>
+  </p>
 </div>
