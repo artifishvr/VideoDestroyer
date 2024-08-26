@@ -20,7 +20,7 @@
   let status: StatusType = "Ready";
   let globalProgress: number = 0;
 
-  async function transcode() {
+  async function destroy() {
     const ffmpeg = new FFmpeg();
     ffmpeg.on("progress", ({ progress }: { progress: number }) => {
       globalProgress = progress * 100;
@@ -37,11 +37,11 @@
 
     status = "Destroying";
     // @ts-ignore
-    await ffmpeg.writeFile("test.mp4", await fetchFile(fileInput.files[0]));
+    await ffmpeg.writeFile("raw.mp4", await fetchFile(fileInput.files[0]));
 
     await ffmpeg.exec([
       "-i",
-      "test.mp4",
+      "raw.mp4",
       "-preset",
       "veryfast",
       "-maxrate",
@@ -56,13 +56,13 @@
       "12",
       "-s",
       "100x100",
-      `step1.mp4`,
+      `destroyed.mp4`,
     ]);
 
     status = "Transcoding";
     await ffmpeg.exec([
       "-i",
-      "step1.mp4",
+      "destroyed.mp4",
       "-preset",
       "veryfast",
       "-r",
@@ -102,7 +102,7 @@
     accept=".mp4" />
 
   <Button
-    on:click={transcode}
+    on:click={destroy}
     class="mt-3 {status === 'Ready' ? '' : 'hidden'}">
     Destroy
   </Button>
