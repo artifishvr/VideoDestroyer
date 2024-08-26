@@ -4,11 +4,12 @@
   import { FFmpeg } from "@ffmpeg/ffmpeg";
   import { fetchFile, toBlobURL } from "$lib/ffmpegUtils";
   import { toast } from "svelte-sonner";
+  import Dropzone from "$lib/components/Dropzone.svelte";
 
   let downloadURL: string;
   let originalName: string;
 
-  let fileInput: HTMLInputElement;
+  let inputFile: File;
 
   const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm";
 
@@ -23,8 +24,7 @@
   let globalProgress: number = 0;
 
   async function destroy() {
-    if (!fileInput.files) return toast.error("No file selected");
-    if (fileInput.files?.length === 0) return toast.error("No file selected");
+    if (!inputFile) return toast.error("No file selected");
 
     const ffmpeg = new FFmpeg();
     ffmpeg.on("progress", ({ progress }: { progress: number }) => {
@@ -42,9 +42,9 @@
 
     status = "Destroying";
 
-    await ffmpeg.writeFile("raw.mp4", await fetchFile(fileInput.files[0]));
+    await ffmpeg.writeFile("raw.mp4", await fetchFile(inputFile));
 
-    originalName = fileInput.files[0].name;
+    originalName = inputFile.name;
 
     await ffmpeg.exec([
       "-i",
@@ -106,11 +106,7 @@
     size/length limit. 2 mins or less is recommended.
   </h2>
 
-  <input
-    class="{status === 'Ready' ? '' : 'hidden'} text-center"
-    type="file"
-    bind:this={fileInput}
-    accept=".mp4" />
+  <Dropzone bind:file={inputFile} hidden={status !== "Ready"} />
 
   <Button on:click={destroy} class="mt-3 {status === 'Ready' ? '' : 'hidden'}">
     Destroy
