@@ -1,7 +1,7 @@
 <script lang="ts">
   import Dropzone from "svelte-file-dropzone";
   import { toast } from "svelte-sonner";
-  import Upload from "lucide-svelte/icons/upload";
+  import FileVideo from "lucide-svelte/icons/file-video";
 
   export let file: File;
   export let hidden: boolean = false;
@@ -27,7 +27,7 @@
     <div
       class="flex flex-col items-center justify-center w-full h-64 border-2 overflow-hidden border-zinc-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-zinc-800 dark:bg-zinc-700 hover:bg-zinc-100 dark:border-zinc-600 dark:hover:border-zinc-500">
       <div class="flex flex-col items-center justify-center pt-5 pb-6">
-        <Upload size={28} color="#a1a1aa" strokeWidth={2.5} />
+        <FileVideo size={28}  color="#a1a1aa" strokeWidth={2.5} />
         <p class="my-2 text-sm text-zinc-500 dark:text-zinc-400">
           {#if file}
             <p class="font-semibold truncate">
