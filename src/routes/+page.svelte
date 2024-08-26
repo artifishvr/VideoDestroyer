@@ -3,8 +3,10 @@
   import Button from "$lib/components/ui/button/button.svelte";
   import { FFmpeg } from "@ffmpeg/ffmpeg";
   import { fetchFile, toBlobURL } from "$lib/ffmpegUtils";
+  import { toast } from "svelte-sonner";
 
   let downloadURL: string;
+  let originalName: string;
 
   let fileInput: HTMLInputElement;
 
@@ -21,6 +23,9 @@
   let globalProgress: number = 0;
 
   async function destroy() {
+    if (!fileInput.files) return toast.error("No file selected");
+    if (fileInput.files?.length === 0) return toast.error("No file selected");
+
     const ffmpeg = new FFmpeg();
     ffmpeg.on("progress", ({ progress }: { progress: number }) => {
       globalProgress = progress * 100;
@@ -36,8 +41,10 @@
     });
 
     status = "Destroying";
-    // @ts-ignore
+
     await ffmpeg.writeFile("raw.mp4", await fetchFile(fileInput.files[0]));
+
+    originalName = fileInput.files[0].name;
 
     await ffmpeg.exec([
       "-i",
@@ -91,8 +98,12 @@
   <h1 class="text-5xl font-bold pb-2 {status === 'Ready' ? '' : 'hidden'}">
     Video Destroyer
   </h1>
-  <h2 class="text-md font-semibold pb-4 {status === 'Ready' ? '' : 'hidden'}">
-    Supports MP4 files. Runs in the browser via ffmpeg.wasm.
+  <h2
+    class="text-md font-semibold pb-4 text-center {status === 'Ready'
+      ? ''
+      : 'hidden'}">
+    Runs 100% in-browser, supports H.264, H.265, VP8/VP9, and OGV.<br />No file
+    size/length limit. 2 mins or less is recommended.
   </h2>
 
   <input
@@ -101,14 +112,12 @@
     bind:this={fileInput}
     accept=".mp4" />
 
-  <Button
-    on:click={destroy}
-    class="mt-3 {status === 'Ready' ? '' : 'hidden'}">
+  <Button on:click={destroy} class="mt-3 {status === 'Ready' ? '' : 'hidden'}">
     Destroy
   </Button>
-  <Status bind:status bind:downloadURL {globalProgress} />
+  <Status {status} {downloadURL} {globalProgress} {originalName} />
 
-  <p class="absolute bottom-0 mb-8 text-gray-300">
+  <p class="absolute bottom-0 mb-8 text-gray-300 text-sm">
     with ❤️ by <a
       href="https://arti.gay?ref=videodestroyer"
       target="_blank"

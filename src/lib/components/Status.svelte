@@ -2,6 +2,7 @@
   export let status: string;
   export let downloadURL: string;
   export let globalProgress: number;
+  export let originalName: string;
 
   import { Progress } from "$lib/components/ui/progress/index.js";
   import Complete from "$lib/components/Complete.svelte";
@@ -25,5 +26,5 @@
 
   <Progress value={globalProgress} max={100} class="w-96" />
 {:else if status === "Complete"}
-  <Complete {downloadURL} />
+  <Complete {downloadURL} {originalName} />
 {/if}

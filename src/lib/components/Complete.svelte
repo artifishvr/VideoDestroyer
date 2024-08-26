@@ -1,5 +1,6 @@
 <script lang="ts">
   export let downloadURL: string;
+  export let originalName: string;
 
   import { mediaQuery } from "svelte-legos";
   import { Button } from "$lib/components/ui/button/index.js";
@@ -13,13 +14,19 @@
 
   let open = false;
   const isDesktop = mediaQuery("(min-width: 768px)");
+
+  let name =
+    originalName.split(".")[0] +
+    "_destroy.arti.lol" +
+    "." +
+    originalName.split(".")[1];
 </script>
 
 <CircleCheck size={48} />
 
 <p class="font-semibold text-2xl pb-4">Complete!</p>
 
-<a href={downloadURL} download>
+<a href={downloadURL} download={name}>
   <Button><Download size={24} class="mr-2 h-4 w-4" /> Download</Button>
 </a>
 

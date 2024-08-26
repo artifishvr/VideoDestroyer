@@ -56,3 +56,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+body {
+  font-family: "DM Sans Variable", sans-serif;
+}

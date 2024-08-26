@@ -1,6 +1,6 @@
 {
   "name": "videodestroyer",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "dev": "vite dev",
@@ -23,11 +23,14 @@
   "type": "module",
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.12.10",
+    "@fontsource-variable/dm-sans": "^5.0.7",
     "bits-ui": "^0.21.13",
     "clsx": "^2.1.1",
     "lucide-svelte": "^0.435.0",
+    "mode-watcher": "^0.4.1",
     "svelte-file-dropzone": "^2.0.7",
     "svelte-legos": "^0.2.4",
+    "svelte-sonner": "^0.3.27",
     "tailwind-merge": "^2.5.2",
     "tailwind-variants": "^0.2.1",
     "vaul-svelte": "^0.3.2"
