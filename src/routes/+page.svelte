@@ -31,6 +31,10 @@
       globalProgress = progress * 100;
     });
 
+    ffmpeg.on("log", ({ type, message }) => {
+      console.log(type, message);
+    });
+
     status = "Loading";
     await ffmpeg.load({
       coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, "text/javascript"),
@@ -70,6 +74,10 @@
     await ffmpeg.exec([
       "-i",
       "destroyed.mp4",
+      "-c:v",
+      "libx264",
+      "-c:a",
+      "aac",
       "-preset",
       "veryfast",
       "-r",

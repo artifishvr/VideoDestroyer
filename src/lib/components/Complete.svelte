@@ -15,11 +15,7 @@
   let open = false;
   const isDesktop = mediaQuery("(min-width: 768px)");
 
-  let name =
-    originalName.split(".")[0] +
-    "_destroy.arti.lol" +
-    "." +
-    originalName.split(".")[1];
+  let name = originalName.split(".")[0] + " destroy.arti.lol.mp4";
 </script>
 
 <CircleCheck size={48} />
