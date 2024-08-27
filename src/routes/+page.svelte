@@ -11,7 +11,7 @@
 
   let inputFile: File;
 
-  const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm";
+  const baseURL = "./ffmpeg";
 
   type StatusType =
     | "Ready"
@@ -41,6 +41,10 @@
       wasmURL: await toBlobURL(
         `${baseURL}/ffmpeg-core.wasm`,
         "application/wasm"
+      ),
+      workerURL: await toBlobURL(
+        `${baseURL}/ffmpeg-core.worker.js`,
+        "text/javascript"
       ),
     });
 
