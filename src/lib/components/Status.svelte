@@ -3,12 +3,14 @@
   export let downloadURL: string;
   export let globalProgress: number;
   export let originalName: string;
+  export let error: string;
 
   import { Progress } from "$lib/components/ui/progress/index.js";
   import Complete from "$lib/components/Complete.svelte";
   import LoaderCircle from "lucide-svelte/icons/loader-circle";
   import Trash2 from "lucide-svelte/icons/trash-2";
   import Clapperboard from "lucide-svelte/icons/clapperboard";
+  import Errored from "$lib/components/Errored.svelte";
 </script>
 
 {#if status === "Loading"}
@@ -25,6 +27,8 @@
   <p class="font-semibold text-2xl pb-4">Transcoding...</p>
 
   <Progress value={globalProgress} max={100} class="w-96" />
+{:else if status === "Error"}
+  <Errored {error} />
 {:else if status === "Complete"}
   <Complete {downloadURL} {originalName} />
 {/if}
