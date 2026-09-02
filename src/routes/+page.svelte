@@ -112,16 +112,14 @@
         "destroyed.mp4",
         "-c:v",
         "libx264",
-        "-c:a",
-        "aac",
         "-preset",
         "veryfast",
         "-r",
         "12",
-        "-af",
-        "volume=-20dB",
         "-s",
         "1080x720",
+        "-c:a", "aac",
+        "-af", "acompressor=threshold=-24dB:ratio=20:attack=1:release=50:makeup=12,alimiter=limit=-6dB:attack=1",
         `final.mp4`,
       ]);
 

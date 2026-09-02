@@ -24,7 +24,7 @@
   <Progress value={globalProgress} max={100} class="w-96 mt-4" />
 {:else if status === "Transcoding"}
   <Clapperboard size={48} class="animate-bounce" />
-  <p class="font-semibold text-2xl pb-4">Transcoding...</p>
+  <p class="font-semibold text-2xl pb-4">Normalizing...</p>
 
   <Progress value={globalProgress} max={100} class="w-96" />
 {:else if status === "Error"}
