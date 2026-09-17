@@ -28,10 +28,9 @@
   let globalProgress: number = 0;
 
   async function destroy() {
+    if (!inputFile) return toast.error("No file selected");
+    const ffmpeg = new FFmpeg();
     try {
-      if (!inputFile) return toast.error("No file selected");
-
-      const ffmpeg = new FFmpeg();
       ffmpeg.on("progress", ({ progress }: { progress: number }) => {
         globalProgress = progress * 100;
       });
@@ -42,7 +41,9 @@
 
       status = "Loading";
 
-      const multithread = false;
+      const multithread =
+        globalThis.crossOriginIsolated === true &&
+        typeof SharedArrayBuffer !== "undefined";
       console.log(
         multithread
           ? "ffmpeg: using multi-threaded core"
@@ -50,6 +51,11 @@
       );
 
       const baseURL = coreBaseURL(multithread ? "core-mt" : "core");
+      const encoderThreads = multithread ? "2" : "1";
+      const inputThreadOptions = [
+        "-filter_threads", "1",
+        "-threads", "1",
+      ];
 
       await ffmpeg.load({
         coreURL: await toBlobURL(
@@ -60,7 +66,6 @@
           `${baseURL}/ffmpeg-core.wasm`,
           "application/wasm",
         ),
-        // @ts-ignore
         ...(multithread && {
           workerURL: await toBlobURL(
             `${baseURL}/ffmpeg-core.worker.js`,
@@ -75,9 +80,11 @@
 
       originalName = inputFile.name;
 
-      await ffmpeg.exec([
+      const destroyCode = await ffmpeg.exec([
+        ...inputThreadOptions,
         "-i",
         "raw.mp4",
+        "-threads:v", encoderThreads,
         "-c:v",
         "libx264",
         "-crf",
@@ -105,11 +112,17 @@
 
         "destroyed.mp4",
       ]);
+      if (destroyCode !== 0) {
+        throw new Error(`Video destruction failed (FFmpeg exit ${destroyCode})`);
+      }
 
       status = "Transcoding";
-      await ffmpeg.exec([
+      globalProgress = 0;
+      const transcodeCode = await ffmpeg.exec([
+        ...inputThreadOptions,
         "-i",
         "destroyed.mp4",
+        "-threads:v", encoderThreads,
         "-c:v",
         "libx264",
         "-preset",
@@ -122,6 +135,9 @@
         "-af", "acompressor=threshold=-24dB:ratio=20:attack=1:release=50:makeup=12,alimiter=limit=-6dB:attack=1",
         `final.mp4`,
       ]);
+      if (transcodeCode !== 0) {
+        throw new Error(`Video transcoding failed (FFmpeg exit ${transcodeCode})`);
+      }
 
       const result = await ffmpeg.readFile("final.mp4");
       status = "Complete";
@@ -138,6 +154,8 @@
       status = "Error";
       error = e;
       toast.error("An error occurred while destroying the video");
+    } finally {
+      ffmpeg.terminate();
     }
   }
 </script>
@@ -163,7 +181,7 @@
     class="text-sm text-zinc-300 pt-2 text-center {status === 'Ready'
       ? ''
       : 'hidden'}">
-    2GB file size limit, shorter is better (its slow, takes ~2-4x the length of the original video)
+    2GB max input (WebAssembly limitation)
   </p>
   <Status {status} {downloadURL} {globalProgress} {originalName} {error} />
   <Button on:click={destroy} class="mt-3 {status === 'Ready' ? '' : 'hidden'}">
