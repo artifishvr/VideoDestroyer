@@ -186,7 +186,7 @@
     class="text-sm text-zinc-300 pt-2 text-center {status === 'Ready'
       ? ''
       : 'hidden'}">
-    2GB max input (WebAssembly limitation), shorter is better (its slow, takes ~1-3x the length of the original video)
+    2GB max input (WebAssembly limitation)
   </p>
   <Status {status} {downloadURL} {globalProgress} {originalName} {error} />
   <Button on:click={destroy} class="mt-3 {status === 'Ready' ? '' : 'hidden'}">
