@@ -51,10 +51,15 @@
       );
 
       const baseURL = coreBaseURL(multithread ? "core-mt" : "core");
-      const encoderThreads = multithread ? "2" : "1";
+      const encoderThreads = multithread
+        ? String(Math.max(1, Math.min(5, navigator.hardwareConcurrency || 2)))
+        : "1";
+      const decoderThreads = multithread
+        ? String(Math.max(1, Math.min(4, navigator.hardwareConcurrency || 2)))
+        : "1";
       const inputThreadOptions = [
         "-filter_threads", "1",
-        "-threads", "1",
+        "-threads", decoderThreads,
       ];
 
       await ffmpeg.load({
@@ -181,7 +186,7 @@
     class="text-sm text-zinc-300 pt-2 text-center {status === 'Ready'
       ? ''
       : 'hidden'}">
-    2GB max input (WebAssembly limitation)
+    2GB max input (WebAssembly limitation), shorter is better (its slow, takes ~1-3x the length of the original video)
   </p>
   <Status {status} {downloadURL} {globalProgress} {originalName} {error} />
   <Button on:click={destroy} class="mt-3 {status === 'Ready' ? '' : 'hidden'}">
